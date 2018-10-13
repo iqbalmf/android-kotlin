@@ -1,0 +1,94 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "net.iqbalfauzan.mykotlinapp"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASE_URL", "\"https://www.thesportsdb.com/\""
+        buildConfigField "String", "TSDB_API_KEY", "\"1\""
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:recyclerview-v7:27.1.1'
+    implementation 'com.android.support:design:27.1.1'
+    implementation 'com.github.bumptech.glide:glide:4.7.1'
+    implementation 'com.squareup.picasso:picasso:2.71828' //picasso
+    implementation 'com.google.code.gson:gson:2.8.5'//gson
+    implementation 'io.reactivex:rxandroid:1.1.0'
+    implementation 'io.reactivex:rxjava:1.1.0'
+    implementation 'com.jakewharton.rxbinding:rxbinding:0.3.0'
+    implementation 'com.squareup.retrofit:retrofit:2.0.0-beta2'
+    implementation 'com.squareup.retrofit:adapter-rxjava:2.0.0-beta2'
+    implementation 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
+
+    implementation "org.jetbrains.anko:anko-commons:0.10.5"
+
+    // Anko Layouts
+    implementation "org.jetbrains.anko:anko-sdk15:0.10.5"
+    implementation "org.jetbrains.anko:anko-appcompat-v7:0.10.5"
+
+    // Coroutine listeners untuk Anko Layouts
+    implementation "org.jetbrains.anko:anko-sdk25-coroutines:0.10.5"
+    implementation "org.jetbrains.anko:anko-appcompat-v7-coroutines:0.10.5"
+
+    // Anko SQLite
+    implementation "org.jetbrains.anko:anko-sqlite:0.10.5"
+    // Appcompat-v7 (hanya Anko Commons)
+    implementation "org.jetbrains.anko:anko-appcompat-v7-commons:0.10.5"
+
+    // Appcompat-v7 (Anko Layouts)
+    implementation "org.jetbrains.anko:anko-appcompat-v7:0.10.5"
+    implementation "org.jetbrains.anko:anko-coroutines:0.10.5"
+
+    // CardView-v7
+    implementation "org.jetbrains.anko:anko-cardview-v7:0.10.5"
+
+    // Design
+    implementation "org.jetbrains.anko:anko-design:0.10.5"
+    implementation "org.jetbrains.anko:anko-design-coroutines:0.10.5"
+
+    // GridLayout-v7
+    implementation "org.jetbrains.anko:anko-gridlayout-v7:0.10.5"
+
+    // Percent
+    implementation "org.jetbrains.anko:anko-percent:0.10.5"
+
+    // RecyclerView-v7
+    implementation "org.jetbrains.anko:anko-recyclerview-v7:0.10.5"
+    implementation "org.jetbrains.anko:anko-recyclerview-v7-coroutines:0.10.5"
+
+    // Support-v4 (hanya Anko Commons)
+    implementation "org.jetbrains.anko:anko-support-v4-commons:0.10.5"
+
+    // Support-v4 (Anko Layouts)
+    implementation "org.jetbrains.anko:anko-support-v4:0.10.5"
+
+    // ConstraintLayout
+    implementation "org.jetbrains.anko:anko-constraint-layout:0.10.5"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
