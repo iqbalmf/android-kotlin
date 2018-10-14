@@ -34,7 +34,7 @@ class FavoriteAdapter(private val context: Context, private val prevMatch: List<
             itemView.textAway.text = items.awayName
             val home: String? = items.homeScore
             val away: String? = items.awayScore
-            if (home == null || away == null){
+            if (home == null || away == null || home.equals("null") || away.equals("null")){
                 itemView.textScore.text = " VS "
             }else{
                 itemView.textScore.text = home.toString()+" VS "+away.toString()

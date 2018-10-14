@@ -3,5 +3,7 @@
     <item name="team_badge" type="id" />
     <item name="team_name" type="id" />
     <item name="list_prev" type="id" />
+    <item name="list_next" type="id" />
+    <item name="list_fav" type="id" />
     <item name="spinner" type="id" />
 </resources>

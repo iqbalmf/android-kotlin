@@ -32,6 +32,8 @@ class DetailActivity : AppCompatActivity(), AnkoLogger, DetailsView{
     private lateinit var teams: ModelFavorite
     private var isFavorite: Boolean = false
     private lateinit var idMatch: String
+    var scoreHome: String = ""
+    var scoreAway: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,8 +83,18 @@ class DetailActivity : AppCompatActivity(), AnkoLogger, DetailsView{
         textFormasiAway.text = data.get(0).AwayFormation
         textHomeName.text = data.get(0).namaHome
         textAwayName.text = data.get(0).namaAway
-        textScoreHome.text = data.get(0).scoreHome.toString()
-        textScoreAway.text = data.get(0).scoreAway.toString()
+        scoreHome = data.get(0).scoreHome.toString()
+        scoreAway = data.get(0).scoreAway.toString()
+
+        if (scoreHome.equals("null") || scoreAway.equals("null")){
+            scoreHome = ""
+            scoreAway = ""
+            textScoreHome.text = scoreHome
+            textScoreAway.text = scoreAway
+        }else{
+            textScoreHome.text = data.get(0).scoreHome.toString()
+            textScoreAway.text = data.get(0).scoreAway.toString()
+        }
         goalsHome.text = data.get(0).homeGoalDetails
         goalsAway.text = data.get(0).AwayGoalDetails
         shotsHome.text = data.get(0).homeShots.toString()

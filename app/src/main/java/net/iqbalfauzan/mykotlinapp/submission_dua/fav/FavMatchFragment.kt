@@ -12,11 +12,10 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import net.iqbalfauzan.mykotlinapp.R
-import net.iqbalfauzan.mykotlinapp.invisible
+import net.iqbalfauzan.mykotlinapp.submission_dua.utils.invisible
 import net.iqbalfauzan.mykotlinapp.submission_dua.database.Favorite
 import net.iqbalfauzan.mykotlinapp.submission_dua.database.database
 import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
-import net.iqbalfauzan.mykotlinapp.visible
 import org.jetbrains.anko.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
@@ -25,18 +24,7 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
-class FavMatchFragment:Fragment(), AnkoComponent<Context>, FavMatchView{
-    override fun showLoading() {
-        progressBar.visible()
-    }
-
-    override fun hideLoading() {
-        progressBar.invisible()
-    }
-
-    override fun showMatchList(data: List<ModelFavorite>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+class FavMatchFragment:Fragment(), AnkoComponent<Context>{
 
     private lateinit var listFavMatch: RecyclerView
     private lateinit var progressBar: ProgressBar
@@ -56,7 +44,7 @@ class FavMatchFragment:Fragment(), AnkoComponent<Context>, FavMatchView{
                     lparams(width = matchParent, height = wrapContent)
 
                     listFavMatch = recyclerView {
-                        id = R.id.list_prev
+                        id = R.id.list_fav
                         lparams(width = matchParent, height = wrapContent)
                         layoutManager = LinearLayoutManager(ctx)
                     }
@@ -72,6 +60,7 @@ class FavMatchFragment:Fragment(), AnkoComponent<Context>, FavMatchView{
     private fun showFavorite(){
         context?.database?.use {
             swipeRefresh.isRefreshing = false
+            progressBar.invisible()
             val result = select(Favorite.TABLE_FAVORITE)
             val favorite = result.parseList(classParser<Favorite>())
             favorites.addAll(favorite)

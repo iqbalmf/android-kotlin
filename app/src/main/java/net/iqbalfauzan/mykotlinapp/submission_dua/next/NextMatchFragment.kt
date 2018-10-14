@@ -16,8 +16,8 @@ import net.iqbalfauzan.mykotlinapp.R
 import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
 import net.iqbalfauzan.mykotlinapp.submission_dua.prev.ModelPrevMatch
 import net.iqbalfauzan.mykotlinapp.ApiRepository
-import net.iqbalfauzan.mykotlinapp.invisible
-import net.iqbalfauzan.mykotlinapp.visible
+import net.iqbalfauzan.mykotlinapp.submission_dua.utils.invisible
+import net.iqbalfauzan.mykotlinapp.submission_dua.utils.visible
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
@@ -67,7 +67,7 @@ class NextMatchFragment : android.support.v4.app.Fragment(), AnkoComponent<Conte
                     lparams(width = matchParent, height = wrapContent)
 
                     listnextMatch = recyclerView {
-                        id = R.id.list_prev
+                        id = R.id.list_next
                         lparams(width = matchParent, height = wrapContent)
                         layoutManager = LinearLayoutManager(ctx)
                     }

@@ -5,14 +5,7 @@ import net.iqbalfauzan.mykotlinapp.BuildConfig
 
 object ApiNextMatch {
     fun getTeams(idPrevMatch: String?):String{
-        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
-                .appendPath("api")
-                .appendPath("v1")
-                .appendPath("json")
-                .appendPath(BuildConfig.TSDB_API_KEY)
-                .appendPath("eventsnextleague.php")
-                .appendQueryParameter("id", idPrevMatch)
-                .build()
-                .toString()
+        return BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/eventsnextleague.php?id=" + idPrevMatch
     }
+    //BuildConfig.BASE_URL + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/search_all_teams.php?l=" + league
 }
