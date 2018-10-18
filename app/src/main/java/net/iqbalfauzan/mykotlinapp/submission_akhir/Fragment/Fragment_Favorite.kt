@@ -1,4 +1,4 @@
-package net.iqbalfauzan.mykotlinapp.submission_dua.fav
+package net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment
 
 import android.content.Context
 import android.os.Bundle
@@ -12,10 +12,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import net.iqbalfauzan.mykotlinapp.R
-import net.iqbalfauzan.mykotlinapp.submission_dua.utils.invisible
+import net.iqbalfauzan.mykotlinapp.utils.invisible
 import net.iqbalfauzan.mykotlinapp.submission_dua.database.Favorite
 import net.iqbalfauzan.mykotlinapp.submission_dua.database.database
 import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
+import net.iqbalfauzan.mykotlinapp.submission_dua.fav.FavoriteAdapter
 import org.jetbrains.anko.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
@@ -24,7 +25,7 @@ import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
-class FavMatchFragment:Fragment(), AnkoComponent<Context>{
+class Fragment_Favorite:Fragment(), AnkoComponent<Context>{
 
     private lateinit var listFavMatch: RecyclerView
     private lateinit var progressBar: ProgressBar
@@ -70,7 +71,7 @@ class FavMatchFragment:Fragment(), AnkoComponent<Context>{
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        adapter = FavoriteAdapter(requireContext(), favorites){
+        adapter = FavoriteAdapter(requireContext(), favorites) {
             ctx.startActivity<DetailActivity>("idMatch" to "${it.teamId}", "idHome" to "${it.idHome}", "idAway" to "${it.idAway}")
         }
         listFavMatch.adapter = adapter

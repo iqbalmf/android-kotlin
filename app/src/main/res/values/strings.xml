@@ -51,4 +51,7 @@
     <string name="prev_match">Prev Match</string>
     <string name="next_match">Next Match</string>
     <string name="favorite_match">Favorite Match</string>
+    <string name="matches">Matches</string>
+    <string name="teams">Teams</string>
+    <string name="favorite">Favorite</string>
 </resources>

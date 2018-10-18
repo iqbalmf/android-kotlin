@@ -5,5 +5,6 @@
     <item name="list_prev" type="id" />
     <item name="list_next" type="id" />
     <item name="list_fav" type="id" />
+    <item name="viewpager" type="id" />
     <item name="spinner" type="id" />
 </resources>

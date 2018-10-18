@@ -13,8 +13,8 @@ import com.google.gson.Gson
 import net.iqbalfauzan.mykotlinapp.R
 import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
 import net.iqbalfauzan.mykotlinapp.ApiRepository
-import net.iqbalfauzan.mykotlinapp.submission_dua.utils.invisible
-import net.iqbalfauzan.mykotlinapp.submission_dua.utils.visible
+import net.iqbalfauzan.mykotlinapp.utils.invisible
+import net.iqbalfauzan.mykotlinapp.utils.visible
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx

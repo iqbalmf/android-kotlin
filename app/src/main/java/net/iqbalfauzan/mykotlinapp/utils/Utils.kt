@@ -1,4 +1,4 @@
-package net.iqbalfauzan.mykotlinapp.submission_dua.utils
+package net.iqbalfauzan.mykotlinapp.utils
 
 import android.annotation.SuppressLint
 import android.view.View

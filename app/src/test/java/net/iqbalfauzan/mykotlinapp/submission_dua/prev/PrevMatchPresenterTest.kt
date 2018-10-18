@@ -2,7 +2,7 @@ package net.iqbalfauzan.mykotlinapp.submission_dua.prev
 
 import com.google.gson.Gson
 import net.iqbalfauzan.mykotlinapp.ApiRepository
-import net.iqbalfauzan.mykotlinapp.submission_dua.utils.TestContextProvider
+import net.iqbalfauzan.mykotlinapp.utils.TestContextProvider
 import org.junit.Test
 
 import org.junit.Before

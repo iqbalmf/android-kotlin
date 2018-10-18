@@ -1,13 +1,11 @@
 package net.iqbalfauzan.mykotlinapp.submission_dua.next
 
 import com.google.gson.Gson
-import kotlinx.coroutines.experimental.test.TestCoroutineContext
 import net.iqbalfauzan.mykotlinapp.ApiRepository
 import net.iqbalfauzan.mykotlinapp.submission_dua.prev.ModelPrevMatch
-import net.iqbalfauzan.mykotlinapp.submission_dua.utils.TestContextProvider
+import net.iqbalfauzan.mykotlinapp.utils.TestContextProvider
 import org.junit.Test
 
-import org.junit.Assert.*
 import org.junit.Before
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
