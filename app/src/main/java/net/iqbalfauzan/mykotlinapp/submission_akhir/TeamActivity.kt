@@ -1,6 +1,6 @@
-package net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment
+package net.iqbalfauzan.mykotlinapp.submission_akhir
 
-import android.content.Context
+import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CoordinatorLayout
@@ -9,37 +9,50 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.Gravity
+import android.widget.LinearLayout
+import android.widget.TextView
 import net.iqbalfauzan.mykotlinapp.R
-import org.jetbrains.anko.AnkoComponent
-import org.jetbrains.anko.AnkoContext
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment.Fragment_Next
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment.Fragment_Overview
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment.Fragment_Players
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment.Fragment_Prev
+import org.jetbrains.anko.*
 import org.jetbrains.anko.design.appBarLayout
 import org.jetbrains.anko.design.coordinatorLayout
 import org.jetbrains.anko.design.themedTabLayout
-import org.jetbrains.anko.matchParent
-import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.viewPager
-import org.jetbrains.anko.wrapContent
 
-class Fragment_Matches: Fragment(), AnkoComponent<Context> {
-    companion object {
-
-        fun newInstance(): Fragment_Matches {
-            return Fragment_Matches()
-        }
-    }
-
+class TeamActivity : AppCompatActivity(){
     private lateinit var mTabLayout: TabLayout
     private lateinit var myViewPager: ViewPager
-    override fun createView(ui: AnkoContext<Context>): View = with(ui){
+    private lateinit var textNamaTim: TextView
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         coordinatorLayout {
             lparams(matchParent, matchParent)
 
             appBarLayout {
                 lparams(matchParent, wrapContent)
-
+                linearLayout {
+                    lparams(matchParent, wrapContent)
+                    orientation = LinearLayout.VERTICAL
+                    imageView {
+                        id = R.id.imageTim
+                    }
+                    textView {
+                        id = R.id.textNamaTim
+                        gravity = Gravity.CENTER
+                    }
+                    textView {
+                        id = R.id.textTahunTim
+                        gravity = Gravity.CENTER
+                    }
+                    textView {
+                        id = R.id.textStadionTim
+                        gravity = Gravity.CENTER
+                    }
+                }
                 mTabLayout = themedTabLayout(R.style.ThemeOverlay_AppCompat_Dark) {
                     lparams(matchParent, wrapContent)
                     {
@@ -52,22 +65,14 @@ class Fragment_Matches: Fragment(), AnkoComponent<Context> {
             }.lparams(matchParent, matchParent)
             (myViewPager!!.layoutParams as CoordinatorLayout.LayoutParams).behavior = AppBarLayout.ScrollingViewBehavior()
         }
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         setupViewPager(myViewPager)
         mTabLayout.setupWithViewPager(myViewPager)
     }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return createView(AnkoContext.create(ctx))
-    }
-    fun setupViewPager(viewPager: ViewPager?) {
-        val adapter = ViewPagerAdapter(activity?.supportFragmentManager)
-        adapter.addFragment(Fragment_Next(), "NEXT")
-        adapter.addFragment(Fragment_Prev(), "LAST")
-        viewPager?.adapter = adapter
+    fun setupViewPager(viewPager: ViewPager) {
+        val adapter = ViewPagerAdapter(supportFragmentManager)
+        adapter.addFragment(Fragment_Overview(), "OVERVIEWS")
+        adapter.addFragment(Fragment_Players(), "PLAYERS")
+        viewPager.adapter = adapter
 
     }
     class ViewPagerAdapter(fragmentManager: FragmentManager?) : FragmentPagerAdapter(fragmentManager){

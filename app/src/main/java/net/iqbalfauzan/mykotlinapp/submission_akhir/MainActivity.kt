@@ -31,17 +31,17 @@ class MainActivity : AppCompatActivity() {
     }
     private fun loadFragmentMatches(savedInstanceState: Bundle?){
         if (savedInstanceState == null){
-            supportFragmentManager.beginTransaction().replace(R.id.main_container, Fragment_Matches(), Fragment_Matches::class.java.simpleName).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.main_container, Fragment_Matches.newInstance()).commit()
         }
     }
     private fun loadFragmentTeams(savedInstanceState: Bundle?){
         if (savedInstanceState == null){
-            supportFragmentManager.beginTransaction().replace(R.id.main_container, Fragment_Teams(), Fragment_Teams::class.java.simpleName).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.main_container, Fragment_Teams.newInstance()).commit()
         }
     }
     private fun loadFragmentFavorite(savedInstanceState: Bundle?){
         if (savedInstanceState == null){
-            supportFragmentManager.beginTransaction().replace(R.id.main_container, Fragment_Favorite(), Fragment_Favorite::class.java.simpleName).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.main_container, Fragment_Favorite.newInstance()).commit()
         }
     }
 }

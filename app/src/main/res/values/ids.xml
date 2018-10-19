@@ -7,4 +7,8 @@
     <item name="list_fav" type="id" />
     <item name="viewpager" type="id" />
     <item name="spinner" type="id" />
+    <item name="textNamaTim" type="id" />
+    <item name="textTahunTim" type="id" />
+    <item name="textStadionTim" type="id" />
+    <item name="imageTim" type="id" />
 </resources>

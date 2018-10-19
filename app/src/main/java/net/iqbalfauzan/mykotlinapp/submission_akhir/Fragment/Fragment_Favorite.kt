@@ -26,7 +26,12 @@ import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
 class Fragment_Favorite:Fragment(), AnkoComponent<Context>{
+    companion object {
 
+        fun newInstance(): Fragment_Favorite {
+            return Fragment_Favorite()
+        }
+    }
     private lateinit var listFavMatch: RecyclerView
     private lateinit var progressBar: ProgressBar
     private lateinit var adapter: FavoriteAdapter
