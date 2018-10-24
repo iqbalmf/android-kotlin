@@ -1,4 +1,4 @@
-package net.iqbalfauzan.mykotlinapp.submission_dua.prev
+package net.iqbalfauzan.mykotlinapp.submission_akhir.Response
 
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 

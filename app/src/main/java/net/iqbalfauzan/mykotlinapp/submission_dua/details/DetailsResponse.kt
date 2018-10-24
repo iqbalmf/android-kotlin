@@ -1,8 +1,8 @@
 package net.iqbalfauzan.mykotlinapp.submission_dua.details
 
-import net.iqbalfauzan.mykotlinapp.submission_dua.prev.ModelPrevMatch
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 
 
 data class DetailsResponse (
-    val events : List<ModelPrevMatch>
+    val events : List<ModelMatch>
 )

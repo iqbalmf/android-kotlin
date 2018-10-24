@@ -1,4 +1,4 @@
-package net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment
+package net.iqbalfauzan.mykotlinapp.submission_dua
 
 import android.content.Context
 import android.os.Bundle

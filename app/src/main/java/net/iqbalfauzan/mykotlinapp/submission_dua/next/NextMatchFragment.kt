@@ -14,7 +14,7 @@ import android.widget.Spinner
 import com.google.gson.Gson
 import net.iqbalfauzan.mykotlinapp.R
 import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
-import net.iqbalfauzan.mykotlinapp.submission_dua.prev.ModelPrevMatch
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 import net.iqbalfauzan.mykotlinapp.ApiRepository
 import net.iqbalfauzan.mykotlinapp.utils.invisible
 import net.iqbalfauzan.mykotlinapp.utils.visible
@@ -27,7 +27,7 @@ import org.jetbrains.anko.support.v4.swipeRefreshLayout
 class NextMatchFragment : android.support.v4.app.Fragment(), AnkoComponent<Context>,
         NextMatchView
 {
-    private var nextMatchs: MutableList<ModelPrevMatch> = mutableListOf()
+    private var nextMatchs: MutableList<ModelMatch> = mutableListOf()
     private lateinit var presenter: NextMatchPresenter
     private lateinit var nextAdapter: NextMatchAdapter
     private lateinit var spinner: Spinner
@@ -43,7 +43,7 @@ class NextMatchFragment : android.support.v4.app.Fragment(), AnkoComponent<Conte
         progressBar.invisible()
     }
 
-    override fun showMatchList(data: List<ModelPrevMatch>) {
+    override fun showMatchList(data: List<ModelMatch>) {
         swipeRefreshLayout.isRefreshing = false
         nextMatchs.clear()
         nextMatchs.addAll(data)

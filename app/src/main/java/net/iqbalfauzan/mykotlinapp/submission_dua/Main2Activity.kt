@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main2.*
 import net.iqbalfauzan.mykotlinapp.R
-import net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment.Fragment_Favorite
 import net.iqbalfauzan.mykotlinapp.submission_dua.next.NextMatchFragment
 import net.iqbalfauzan.mykotlinapp.submission_dua.prev.PrevMatchFragment
 

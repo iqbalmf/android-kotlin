@@ -1,9 +1,9 @@
-package net.iqbalfauzan.mykotlinapp.submission_dua.prev
+package net.iqbalfauzan.mykotlinapp.submission_akhir.View
 
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 
 interface PrevMatchView{
     fun showLoading()
     fun hideLoading()
-    fun showMatchList(data : List<ModelMatch>)
+    fun showPrevMatch(data: List<ModelMatch>)
 }

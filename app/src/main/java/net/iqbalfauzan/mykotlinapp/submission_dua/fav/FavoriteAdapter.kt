@@ -9,10 +9,6 @@ import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_prev_match.view.*
 import net.iqbalfauzan.mykotlinapp.R
 import net.iqbalfauzan.mykotlinapp.submission_dua.database.Favorite
-import net.iqbalfauzan.mykotlinapp.submission_dua.next.NextMatchAdapter
-import net.iqbalfauzan.mykotlinapp.submission_dua.prev.ModelPrevMatch
-import org.jetbrains.anko.*
-import org.jetbrains.anko.sdk25.coroutines.onClick
 
 class FavoriteAdapter(private val context: Context, private val prevMatch: List<Favorite>,
                       private val listener: (Favorite)-> Unit) :

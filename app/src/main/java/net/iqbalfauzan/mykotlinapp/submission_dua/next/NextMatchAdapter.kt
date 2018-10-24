@@ -8,10 +8,10 @@ import android.view.ViewGroup
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_prev_match.view.*
 import net.iqbalfauzan.mykotlinapp.R
-import net.iqbalfauzan.mykotlinapp.submission_dua.prev.ModelPrevMatch
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 
-class NextMatchAdapter(private val context: Context, private val prevMatch: List<ModelPrevMatch>,
-                       private val listener: (ModelPrevMatch)-> Unit)
+class NextMatchAdapter(private val context: Context, private val prevMatch: List<ModelMatch>,
+                       private val listener: (ModelMatch)-> Unit)
     : RecyclerView.Adapter<NextMatchAdapter.PrevMatchHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
             PrevMatchHolder(LayoutInflater.from(context).inflate(R.layout.item_prev_match, parent, false))
@@ -23,7 +23,7 @@ class NextMatchAdapter(private val context: Context, private val prevMatch: List
     }
 
     class PrevMatchHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-        fun bindItem(items: ModelPrevMatch, listener: (ModelPrevMatch) -> Unit){
+        fun bindItem(items: ModelMatch, listener: (ModelMatch) -> Unit){
             itemView.textDate.text = items.tanggal
             itemView.textHome.text = items.namaHome
             itemView.textAway.text = items.namaAway

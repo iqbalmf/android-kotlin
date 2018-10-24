@@ -2,7 +2,7 @@ package net.iqbalfauzan.mykotlinapp.submission_dua.next
 
 import com.google.gson.Gson
 import net.iqbalfauzan.mykotlinapp.ApiRepository
-import net.iqbalfauzan.mykotlinapp.submission_dua.prev.ModelPrevMatch
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 import net.iqbalfauzan.mykotlinapp.utils.TestContextProvider
 import org.junit.Test
 
@@ -34,7 +34,7 @@ class NextMatchPresenterTest {
 
     @Test
     fun getNextMatchList() {
-        val teams: MutableList<ModelPrevMatch> = mutableListOf()
+        val teams: MutableList<ModelMatch> = mutableListOf()
         val response = NextMatchResponse(teams)
         val league = "4328"
 

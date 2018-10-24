@@ -13,6 +13,7 @@ import com.google.gson.Gson
 import net.iqbalfauzan.mykotlinapp.R
 import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
 import net.iqbalfauzan.mykotlinapp.ApiRepository
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 import net.iqbalfauzan.mykotlinapp.utils.invisible
 import net.iqbalfauzan.mykotlinapp.utils.visible
 import org.jetbrains.anko.*
@@ -23,7 +24,7 @@ import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
 class PrevMatchFragment:android.support.v4.app.Fragment(),
         AnkoComponent<Context>, PrevMatchView {
-    private var prevMatchs: MutableList<ModelPrevMatch> = mutableListOf()
+    private var prevMatchs: MutableList<ModelMatch> = mutableListOf()
     private lateinit var presenter: PrevMatchPresenter
     private lateinit var prevAdapter: PrevMatchAdapter
     private lateinit var spinner: Spinner
@@ -80,7 +81,7 @@ class PrevMatchFragment:android.support.v4.app.Fragment(),
             presenter.getPrevMatchList("4328")
         }
     }
-    override fun showMatchList(data: List<ModelPrevMatch>) {
+    override fun showMatchList(data: List<ModelMatch>) {
         swipeRefreshLayout.isRefreshing = false
         prevMatchs.clear()
         prevMatchs.addAll(data)

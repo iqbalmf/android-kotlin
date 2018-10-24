@@ -1,8 +1,8 @@
-package net.iqbalfauzan.mykotlinapp.submission_dua.prev
+package net.iqbalfauzan.mykotlinapp.submission_akhir.Model
 
 import com.google.gson.annotations.SerializedName
 
-data class ModelPrevMatch(
+data class ModelMatch(
                 @SerializedName("idEvent")
                 var idMatch: String? = null,
                 @SerializedName("strEvent")
@@ -23,6 +23,10 @@ data class ModelPrevMatch(
                 var idAway: String? = null,
                 @SerializedName("dateEvent")
                 var tanggal: String? = null,
+                @SerializedName("strDate")
+                var strDate: String? = null,
+                @SerializedName("strTime")
+                var jam: String? = null,
                 @SerializedName("strHomeGoalDetails")
                 var homeGoalDetails: String? = null,
                 @SerializedName("strHomeRedCards")

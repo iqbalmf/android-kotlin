@@ -1,4 +1,4 @@
-package net.iqbalfauzan.mykotlinapp
+package net.iqbalfauzan.mykotlinapp.submission_akhir.Model
 
 import com.google.gson.annotations.SerializedName
 

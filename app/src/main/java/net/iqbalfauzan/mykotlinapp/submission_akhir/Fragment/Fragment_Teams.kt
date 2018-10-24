@@ -12,22 +12,20 @@ import android.view.ViewGroup
 import android.widget.*
 import com.google.gson.Gson
 import net.iqbalfauzan.mykotlinapp.ApiRepository
-import net.iqbalfauzan.mykotlinapp.ModelTeam
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelTeam
 import net.iqbalfauzan.mykotlinapp.R
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Adapter.AdapterTeam
 import net.iqbalfauzan.mykotlinapp.submission_akhir.TeamActivity
-import net.iqbalfauzan.mykotlinapp.submission_akhir.TeamPresenter
-import net.iqbalfauzan.mykotlinapp.submission_akhir.TeamView
-import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Presenter.TeamPresenter
+import net.iqbalfauzan.mykotlinapp.submission_akhir.View.TeamView
 import net.iqbalfauzan.mykotlinapp.utils.invisible
 import net.iqbalfauzan.mykotlinapp.utils.visible
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
-import org.jetbrains.anko.support.v4.toast
 
-class Fragment_Teams:Fragment(), AnkoComponent<Context>, AnkoLogger, TeamView{
+class Fragment_Teams:Fragment(), AnkoComponent<Context>, AnkoLogger, TeamView {
     override fun showLoading() {
         progressBar.visible()
     }

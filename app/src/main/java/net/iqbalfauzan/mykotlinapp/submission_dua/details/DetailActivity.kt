@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import net.iqbalfauzan.mykotlinapp.R
 import net.iqbalfauzan.mykotlinapp.R.drawable.ic_add_to_favorites
 import net.iqbalfauzan.mykotlinapp.R.drawable.ic_added_to_favorites
-import net.iqbalfauzan.mykotlinapp.submission_dua.prev.ModelPrevMatch
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 import net.iqbalfauzan.mykotlinapp.ApiRepository
 import net.iqbalfauzan.mykotlinapp.submission_dua.database.Favorite
 import net.iqbalfauzan.mykotlinapp.submission_dua.database.database
@@ -69,7 +69,7 @@ class DetailActivity : AppCompatActivity(), AnkoLogger, DetailsView{
 
     }
 
-    override fun showMatchList(data: List<ModelPrevMatch>) {
+    override fun showMatchList(data: List<ModelMatch>) {
         teams = ModelFavorite(data[0].idMatch,
                 data[0].scoreHome.toString(),
                 data[0].scoreAway.toString(),

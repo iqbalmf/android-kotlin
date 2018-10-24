@@ -1,6 +1,5 @@
 package net.iqbalfauzan.mykotlinapp.submission_akhir.Adapter
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
@@ -8,12 +7,10 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.squareup.picasso.Picasso
-import kotlinx.android.extensions.LayoutContainer
-import net.iqbalfauzan.mykotlinapp.ModelTeam
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelTeam
 import net.iqbalfauzan.mykotlinapp.R
 import net.iqbalfauzan.mykotlinapp.R.id.team_badge
 import net.iqbalfauzan.mykotlinapp.R.id.team_name
-import net.iqbalfauzan.mykotlinapp.submission_dua.prev.ModelPrevMatch
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk15.coroutines.onClick
 
