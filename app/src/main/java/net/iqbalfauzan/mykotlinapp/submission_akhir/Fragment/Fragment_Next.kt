@@ -17,6 +17,7 @@ import net.iqbalfauzan.mykotlinapp.submission_akhir.Adapter.AdapterNextMatch
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Presenter.NextMatchPresenter
 import net.iqbalfauzan.mykotlinapp.submission_akhir.View.NextMatchView
+import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
 import net.iqbalfauzan.mykotlinapp.submission_dua.next.NextMatchAdapter
 import net.iqbalfauzan.mykotlinapp.utils.invisible
 import net.iqbalfauzan.mykotlinapp.utils.visible
@@ -114,6 +115,7 @@ class Fragment_Next:Fragment(), AnkoComponent<Context>, AnkoLogger, NextMatchVie
             }
         }
         adapter = AdapterNextMatch(requireContext(), nextMatch){
+            ctx.startActivity<DetailActivity>("idMatch" to "${it.idMatch}", "idHome" to "${it.idHome}", "idAway" to "${it.idAway}")
 
         }
         listNext.adapter = adapter

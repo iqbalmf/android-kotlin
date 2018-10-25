@@ -18,6 +18,7 @@ import net.iqbalfauzan.mykotlinapp.submission_akhir.Adapter.AdapterTeam
 import net.iqbalfauzan.mykotlinapp.submission_akhir.TeamActivity
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Presenter.TeamPresenter
 import net.iqbalfauzan.mykotlinapp.submission_akhir.View.TeamView
+import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
 import net.iqbalfauzan.mykotlinapp.utils.invisible
 import net.iqbalfauzan.mykotlinapp.utils.visible
 import org.jetbrains.anko.*
@@ -87,7 +88,7 @@ class Fragment_Teams:Fragment(), AnkoComponent<Context>, AnkoLogger, TeamView {
         val spinnerAdapter = ArrayAdapter(ctx, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
         spinner.adapter = spinnerAdapter
         adapter = AdapterTeam(teams){
-            ctx.startActivity<TeamActivity>()
+            ctx.startActivity<TeamActivity>("idTeam" to "${it.teamId}")
         }
         listTeam.adapter = adapter
         val request = ApiRepository()

@@ -17,6 +17,7 @@ import net.iqbalfauzan.mykotlinapp.submission_akhir.Adapter.AdapterPrevMatch
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Presenter.PrevMatchPresenter
 import net.iqbalfauzan.mykotlinapp.submission_akhir.View.PrevMatchView
+import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
 import net.iqbalfauzan.mykotlinapp.utils.invisible
 import net.iqbalfauzan.mykotlinapp.utils.visible
 import org.jetbrains.anko.*
@@ -112,6 +113,7 @@ class Fragment_Prev:Fragment(), AnkoComponent<Context>, AnkoLogger, PrevMatchVie
             }
         }
         adapter = AdapterPrevMatch(requireContext(), prevMatch){
+            ctx.startActivity<DetailActivity>("idMatch" to "${it.idMatch}", "idHome" to "${it.idHome}", "idAway" to "${it.idAway}")
 
         }
         listPrevMatch.adapter = adapter
