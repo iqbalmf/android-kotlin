@@ -61,7 +61,7 @@ class FragmentFavorite:Fragment(), AnkoComponent<Context> {
         mTabLayout.setupWithViewPager(myViewPager)
     }
     fun setupViewPager(viewPager: ViewPager?) {
-        val adapter = ViewPagerAdapter(activity?.supportFragmentManager)
+        val adapter = ViewPagerAdapter(childFragmentManager)
         adapter.addFragment(Fragment_MatchesFav(), "Matches")
         adapter.addFragment(Fragment_TeamFav(), "Team")
         viewPager?.adapter = adapter

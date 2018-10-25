@@ -64,13 +64,13 @@ class Fragment_Matches: Fragment(), AnkoComponent<Context> {
         return createView(AnkoContext.create(ctx))
     }
     fun setupViewPager(viewPager: ViewPager?) {
-        val adapter = ViewPagerAdapter(activity?.supportFragmentManager)
+        val adapter = ViewPagerAdapter(childFragmentManager)
         adapter.addFragment(Fragment_Next(), "NEXT")
         adapter.addFragment(Fragment_Prev(), "LAST")
         viewPager?.adapter = adapter
 
     }
-    class ViewPagerAdapter(fragmentManager: FragmentManager?) : FragmentPagerAdapter(fragmentManager){
+    class ViewPagerAdapter(childFragmentManager: FragmentManager?) : FragmentPagerAdapter(childFragmentManager){
         var fragment: ArrayList<Fragment> = ArrayList()
         var fragmentTitle: ArrayList<String> = ArrayList()
 
