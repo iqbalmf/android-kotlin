@@ -1,10 +1,10 @@
-package net.iqbalfauzan.mykotlinapp.submission_dua.database
+package net.iqbalfauzan.mykotlinapp.submission_akhir.database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import org.jetbrains.anko.db.*
 
-class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "FavoriteTeam.db", null, 1) {
+class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "FavoriteTeam.db", null, 2) {
     companion object {
         private var instance: MyDatabaseOpenHelper? = null
 
@@ -27,6 +27,7 @@ class MyDatabaseOpenHelper(ctx: Context) : ManagedSQLiteOpenHelper(ctx, "Favorit
                 Favorite.AWAY_NAME to TEXT,
                 Favorite.ID_AWAY to TEXT,
                 Favorite.DATE_MATCH to TEXT,
+                Favorite.TIME_MATCH to TEXT,
                 Favorite.AWAY_SCORE to TEXT,
                 Favorite.HOME_SCORE to TEXT)
     }

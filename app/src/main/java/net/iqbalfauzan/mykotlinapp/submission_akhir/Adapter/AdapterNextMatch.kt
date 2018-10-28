@@ -22,12 +22,15 @@ class AdapterNextMatch(private val context: Context,
             itemView.textDate.text = items.tanggal
             itemView.textHome.text = items.namaHome
             itemView.textAway.text = items.namaAway
-            var jam = items.jam?.split("+")
-            var gmt = GMT().toGMTFormat(items.strDate,jam?.get(0))
-            val jam1 = gmt.toString().split(" ")
-            val jam2 = jam1?.get(3)
-            itemView.textJam.text = jam2
-
+            if (items.strDate != null){
+                val jam = items.jam?.split("+")
+                val gmt = GMT().toGMTFormat(items.strDate,jam?.get(0))
+                val jam1 = gmt.toString().split(" ")
+                val jam2 = jam1?.get(3)
+                itemView.textJam.text = jam2
+            }else{
+                itemView.textJam.text = items.jam
+            }
             itemView.textScore.text = " VS "
             containerView.setOnClickListener { listener(items) }
         }
@@ -43,8 +46,6 @@ class AdapterNextMatch(private val context: Context,
             val intent = Intent(Intent.ACTION_EDIT)
             intent.type = "vnd.android.cursor.item/event"
             intent.putExtra(CalendarContract.Events.TITLE, model[position].namaHome+" VS "+model[position].namaAway)
-            intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, "12:00")
-            intent.putExtra(CalendarContract.CalendarAlerts.ALARM_TIME, "11:00")
             context.startActivity(intent)
         }
     }

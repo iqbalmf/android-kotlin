@@ -20,9 +20,15 @@ class AdapterPrevMatch(private val context: Context,
             itemView.textDate.text = items.tanggal
             itemView.textHome.text = items.namaHome
             itemView.textAway.text = items.namaAway
-            //var jam = items.jam?.split("+")
-            //var gmt = GMT().toGMTFormat(items.strDate,jam?.get(0))
-            itemView.textJam.text = items.jam
+            if (items.strDate != null){
+                val jam = items.jam?.split("+")
+                val gmt = GMT().toGMTFormat(items.strDate,jam?.get(0))
+                val jam1 = gmt.toString().split(" ")
+                val jam2 = jam1?.get(3)
+                itemView.textJam.text = jam2
+            }else{
+                itemView.textJam.text = items.jam
+            }
             val home: Int? = items.scoreHome
             val away: Int? = items.scoreAway
             if (home == null || away == null){

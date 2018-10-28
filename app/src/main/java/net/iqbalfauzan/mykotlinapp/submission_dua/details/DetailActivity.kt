@@ -14,8 +14,8 @@ import net.iqbalfauzan.mykotlinapp.R.drawable.ic_add_to_favorites
 import net.iqbalfauzan.mykotlinapp.R.drawable.ic_added_to_favorites
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 import net.iqbalfauzan.mykotlinapp.ApiRepository
-import net.iqbalfauzan.mykotlinapp.submission_dua.database.Favorite
-import net.iqbalfauzan.mykotlinapp.submission_dua.database.database
+import net.iqbalfauzan.mykotlinapp.submission_akhir.database.Favorite
+import net.iqbalfauzan.mykotlinapp.submission_akhir.database.database
 import net.iqbalfauzan.mykotlinapp.submission_dua.fav.ModelFavorite
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.db.classParser
@@ -77,8 +77,10 @@ class DetailActivity : AppCompatActivity(), AnkoLogger, DetailsView{
                 data[0].namaAway,
                 data[0].idHome,
                 data[0].idAway,
-                data[0].tanggal)
+                data[0].tanggal,
+                data[0].jam)
         textTanggal.text = data.get(0).tanggal
+        textJam.text = data.get(0).jam
         textFormasiHome.text = data.get(0).HomeFormation
         textFormasiAway.text = data.get(0).AwayFormation
         textHomeName.text = data.get(0).namaHome
@@ -149,6 +151,7 @@ class DetailActivity : AppCompatActivity(), AnkoLogger, DetailsView{
                         Favorite.AWAY_NAME to teams.namaAway,
                         Favorite.ID_AWAY to teams.idAway,
                         Favorite.DATE_MATCH to teams.tanggal,
+                        Favorite.TIME_MATCH to teams.jam,
                         Favorite.HOME_SCORE to teams.scoreHome,
                         Favorite.AWAY_SCORE to teams.scoreAway)
             }

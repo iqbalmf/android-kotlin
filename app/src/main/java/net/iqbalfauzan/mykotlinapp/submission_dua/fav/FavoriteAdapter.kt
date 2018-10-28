@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.item_prev_match.view.*
 import net.iqbalfauzan.mykotlinapp.R
-import net.iqbalfauzan.mykotlinapp.submission_dua.database.Favorite
+import net.iqbalfauzan.mykotlinapp.submission_akhir.database.Favorite
 
 class FavoriteAdapter(private val context: Context, private val prevMatch: List<Favorite>,
                       private val listener: (Favorite)-> Unit) :
@@ -26,6 +26,7 @@ class FavoriteAdapter(private val context: Context, private val prevMatch: List<
     class FavHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
         fun bindItem(items: Favorite, listener: (Favorite) -> Unit){
             itemView.textDate.text = items.dateMatch
+            itemView.textJam.text = items.timeMatch
             itemView.textHome.text = items.homeName
             itemView.textAway.text = items.awayName
             val home: String? = items.homeScore

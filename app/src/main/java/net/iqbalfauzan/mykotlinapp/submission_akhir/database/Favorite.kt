@@ -1,4 +1,4 @@
-package net.iqbalfauzan.mykotlinapp.submission_dua.database
+package net.iqbalfauzan.mykotlinapp.submission_akhir.database
 
 data class Favorite(
         val id: Long?,
@@ -8,6 +8,7 @@ data class Favorite(
         val awayName: String?,
         val idAway: String?,
         val dateMatch: String?,
+        val timeMatch: String?,
         val homeScore: String?,
         val awayScore: String?) {
 
@@ -20,6 +21,7 @@ data class Favorite(
         const val AWAY_NAME: String = "AWAY_NAME"
         const val ID_AWAY: String = "ID_AWAY"
         const val DATE_MATCH: String = "DATE_MATCH"
+        const val TIME_MATCH: String = "TIME_MATCH"
         const val HOME_SCORE: String = "HOME_SCORE"
         const val AWAY_SCORE: String = "AWAY_SCORE"
     }

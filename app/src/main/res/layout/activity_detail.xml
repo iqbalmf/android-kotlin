@@ -19,6 +19,14 @@
         android:text="TANGGAL"
         android:padding="8dp"
         android:textSize="16sp"/>
+    <TextView
+        android:id="@+id/textJam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:text="JAM"
+        android:textSize="12sp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -18,5 +18,7 @@ data class ModelFavorite(
         @SerializedName("idAwayTeam")
         var idAway: String? = null,
         @SerializedName("dateEvent")
-        var tanggal: String? = null
+        var tanggal: String? = null,
+        @SerializedName("strTime")
+        var jam: String? = null
 )

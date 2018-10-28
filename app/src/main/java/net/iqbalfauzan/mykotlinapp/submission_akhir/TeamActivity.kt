@@ -20,19 +20,17 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_detail.*
 import net.iqbalfauzan.mykotlinapp.ApiRepository
 import net.iqbalfauzan.mykotlinapp.R
-import net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment.Fragment_Next
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment.Fragment_Overview
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment.Fragment_Players
-import net.iqbalfauzan.mykotlinapp.submission_akhir.Fragment.Fragment_Prev
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelTeam
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Presenter.TeamPresenter
 import net.iqbalfauzan.mykotlinapp.submission_akhir.View.TeamView
-import net.iqbalfauzan.mykotlinapp.submission_dua.database.Favorite
-import net.iqbalfauzan.mykotlinapp.submission_dua.database.database
-import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailsPresenter
+import net.iqbalfauzan.mykotlinapp.submission_akhir.database.Favorite
+import net.iqbalfauzan.mykotlinapp.submission_akhir.database.TeamFavorite
+import net.iqbalfauzan.mykotlinapp.submission_akhir.database.database
+import net.iqbalfauzan.mykotlinapp.submission_akhir.database.databaseTeam
 import net.iqbalfauzan.mykotlinapp.utils.invisible
 import net.iqbalfauzan.mykotlinapp.utils.visible
 import org.jetbrains.anko.*
@@ -55,6 +53,9 @@ class TeamActivity : AppCompatActivity(), AnkoLogger, TeamView{
     }
 
     override fun showTeamList(data: List<ModelTeam>) {
+        teams = ModelTeam(data[0].teamId,
+                data[0].teamName,
+                data[0].teamBadge)
         Picasso.get().load(data.get(0).teamBadge).into(imageLogo)
         textNamaTim.text = data.get(0).teamName
         textStadionTi.text = data.get(0).teamStadium
@@ -71,10 +72,13 @@ class TeamActivity : AppCompatActivity(), AnkoLogger, TeamView{
     private lateinit var textStadionTi: TextView
     private lateinit var imageLogo: ImageView
     private lateinit var presenter: TeamPresenter
+    private lateinit var teams: ModelTeam
+    private lateinit var idTeam:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        val idTeam = intent.getStringExtra("idTeam")
+        idTeam = intent.getStringExtra("idTeam")
+        favoriteState()
         coordinatorLayout {
             lparams(matchParent, matchParent)
 
@@ -126,6 +130,7 @@ class TeamActivity : AppCompatActivity(), AnkoLogger, TeamView{
         val gson = Gson()
         presenter = TeamPresenter(this, request, gson)
         presenter.getTeam(idTeam)
+
     }
     fun setupViewPager(viewPager: ViewPager, bundle: Bundle, idTeam:String) {
         val adapter = ViewPagerAdapter(supportFragmentManager)
@@ -186,19 +191,32 @@ class TeamActivity : AppCompatActivity(), AnkoLogger, TeamView{
     }
     private fun addToFavorite(){
         try {
-
+            databaseTeam.use {
+                insert(TeamFavorite.TABLE_FAVORITE, TeamFavorite.TEAMID to teams.teamId,
+                        TeamFavorite.TEAMIMAGE to teams.teamBadge,
+                        TeamFavorite.TEAMNAME to teams.teamName)
+            }
             toast("Added to favorite").show()
         } catch (e: SQLiteConstraintException){
             toast(e.localizedMessage).show()
         }
     }
     private fun favoriteState(){
-
+        databaseTeam.use {
+            val result = select(TeamFavorite.TABLE_FAVORITE).whereArgs(
+                    "(TEAMID = {id})", "id" to idTeam
+            )
+            val favorite = result.parseList(classParser<TeamFavorite>())
+            if (!favorite.isEmpty()) isFavorite = true
+        }
     }
 
     private fun removeFromFavorite(){
         try {
-
+            databaseTeam.use {
+                delete(TeamFavorite.TABLE_FAVORITE, "(TEAMID = {id})",
+                        "id" to idTeam)
+            }
             toast("Removed to favorite").show()
         } catch (e: SQLiteConstraintException){
             toast(e.localizedMessage).show()

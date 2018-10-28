@@ -13,8 +13,8 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import net.iqbalfauzan.mykotlinapp.R
 import net.iqbalfauzan.mykotlinapp.utils.invisible
-import net.iqbalfauzan.mykotlinapp.submission_dua.database.Favorite
-import net.iqbalfauzan.mykotlinapp.submission_dua.database.database
+import net.iqbalfauzan.mykotlinapp.submission_akhir.database.Favorite
+import net.iqbalfauzan.mykotlinapp.submission_akhir.database.database
 import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
 import net.iqbalfauzan.mykotlinapp.submission_dua.fav.FavoriteAdapter
 import org.jetbrains.anko.*
