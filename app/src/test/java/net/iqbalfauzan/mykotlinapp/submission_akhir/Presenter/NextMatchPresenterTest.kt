@@ -1,11 +1,16 @@
-package net.iqbalfauzan.mykotlinapp.submission_dua.next
+package net.iqbalfauzan.mykotlinapp.submission_akhir.Presenter
 
 import com.google.gson.Gson
+import kotlinx.coroutines.experimental.test.TestCoroutineContext
 import net.iqbalfauzan.mykotlinapp.ApiRepository
+import net.iqbalfauzan.mykotlinapp.submission_akhir.ApiService
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Response.NextMatchResponse
+import net.iqbalfauzan.mykotlinapp.submission_akhir.View.NextMatchView
 import net.iqbalfauzan.mykotlinapp.utils.TestContextProvider
 import org.junit.Test
 
+import org.junit.Assert.*
 import org.junit.Before
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
@@ -29,25 +34,25 @@ class NextMatchPresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = NextMatchPresenter(view, gson, apiRepository, TestContextProvider())
+        presenter = NextMatchPresenter(view, apiRepository, gson, TestContextProvider())
     }
 
+
     @Test
-    fun getNextMatchList() {
+    fun getMatchList() {
         val teams: MutableList<ModelMatch> = mutableListOf()
         val response = NextMatchResponse(teams)
         val league = "4328"
 
         `when`(gson.fromJson(apiRepository
-                .doRequest(ApiNextMatch.getTeams(league)),
+                .doRequest(ApiService.getNextMatch(league)),
                 NextMatchResponse::class.java
         )).thenReturn(response)
 
-        presenter.getNextMatchList(league)
+        presenter.getMatchList(league)
 
         verify(view).showLoading()
-        verify(view).showMatchList(teams)
+        verify(view).showNextMatchList(teams)
         verify(view).hideLoading()
-
     }
 }

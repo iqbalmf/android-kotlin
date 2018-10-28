@@ -19,7 +19,6 @@ import net.iqbalfauzan.mykotlinapp.submission_akhir.Presenter.SearchMatchPresent
 import net.iqbalfauzan.mykotlinapp.submission_akhir.View.NextMatchView
 import net.iqbalfauzan.mykotlinapp.submission_akhir.View.SearchMatchView
 import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
-import net.iqbalfauzan.mykotlinapp.submission_dua.next.NextMatchAdapter
 import net.iqbalfauzan.mykotlinapp.utils.invisible
 import net.iqbalfauzan.mykotlinapp.utils.visible
 import org.jetbrains.anko.*
@@ -68,12 +67,15 @@ class Fragment_Next:Fragment(), AnkoComponent<Context>, AnkoLogger, NextMatchVie
             topPadding = dip(16)
             leftPadding = dip(16)
             rightPadding = dip(16)
-            spinner = spinner()
+            spinner = spinner{
+                id = R.id.spinner
+            }
             swipeRefresh = swipeRefreshLayout {
                 relativeLayout{
                     lparams (width = matchParent, height = wrapContent)
 
                     listNext = recyclerView {
+                        id = R.id.list_next
                         lparams (width = matchParent, height = wrapContent)
                         layoutManager = LinearLayoutManager(ctx)
                     }

@@ -72,6 +72,7 @@ class Fragment_Prev:Fragment(), AnkoComponent<Context>, AnkoLogger, PrevMatchVie
                     lparams (width = matchParent, height = wrapContent)
 
                     listPrevMatch = recyclerView {
+                        id = R.id.list_prev
                         lparams (width = matchParent, height = wrapContent)
                         layoutManager = LinearLayoutManager(ctx)
                     }

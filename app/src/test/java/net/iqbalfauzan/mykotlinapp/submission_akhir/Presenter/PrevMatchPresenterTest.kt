@@ -1,17 +1,22 @@
-package net.iqbalfauzan.mykotlinapp.submission_dua.prev
+package net.iqbalfauzan.mykotlinapp.submission_akhir.Presenter
 
 import com.google.gson.Gson
 import net.iqbalfauzan.mykotlinapp.ApiRepository
+import net.iqbalfauzan.mykotlinapp.submission_akhir.ApiService
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Response.NextMatchResponse
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Response.PrevMatchResponse
+import net.iqbalfauzan.mykotlinapp.submission_akhir.View.NextMatchView
+import net.iqbalfauzan.mykotlinapp.submission_akhir.View.PrevMatchView
 import net.iqbalfauzan.mykotlinapp.utils.TestContextProvider
-import org.junit.Test
-
+import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
-class PrevMatchPresenterTest {
+class PrevMatchPresenterTest{
     @Mock
     private
     lateinit var view: PrevMatchView
@@ -28,24 +33,25 @@ class PrevMatchPresenterTest {
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        presenter = PrevMatchPresenter(view, gson, apiRepository, TestContextProvider())
+        presenter = PrevMatchPresenter(view, apiRepository, gson, TestContextProvider())
     }
 
+
     @Test
-    fun getPrevMatchList() {
+    fun getMatchList() {
         val teams: MutableList<ModelMatch> = mutableListOf()
         val response = PrevMatchResponse(teams)
         val league = "4328"
 
         Mockito.`when`(gson.fromJson(apiRepository
-                .doRequest(ApiPrevMatch.getTeams(league)),
+                .doRequest(ApiService.getNextMatch(league)),
                 PrevMatchResponse::class.java
         )).thenReturn(response)
 
-        presenter.getPrevMatchList(league)
+        presenter.getMatchList(league)
 
         Mockito.verify(view).showLoading()
-        Mockito.verify(view).showMatchList(teams)
+        Mockito.verify(view).showPrevMatch(teams)
         Mockito.verify(view).hideLoading()
     }
 }
