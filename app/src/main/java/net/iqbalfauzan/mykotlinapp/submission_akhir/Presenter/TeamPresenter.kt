@@ -28,6 +28,22 @@ class TeamPresenter(
             }
         }
     }
+    fun getSearchTeam(idTeam: String?) {
+        view.showLoading()
+        doAsync {
+            val data = gson.fromJson(apiRepository
+                    .doRequest(ApiService.searchTeam(idTeam)),
+                    TeamResponse::class.java
+            )
+
+            uiThread {
+                view.hideLoading()
+                if (data.teams != null) {
+                    view.showTeamList(data.teams)
+                }
+            }
+        }
+    }
     fun getTeam(idTeam: String?) {
         view.showLoading()
         doAsync {

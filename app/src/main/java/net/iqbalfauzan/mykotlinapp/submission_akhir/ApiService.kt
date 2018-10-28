@@ -70,4 +70,26 @@ object ApiService{
                 .build()
                 .toString()
     }
+    fun searchTeam(teams:String?) : String{
+        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
+                .appendPath("api")
+                .appendPath("v1")
+                .appendPath("json")
+                .appendPath(BuildConfig.TSDB_API_KEY)
+                .appendPath("searchteams.php")
+                .appendQueryParameter("t", teams)
+                .build()
+                .toString()
+    }
+    fun searchMatch(matchs:String?) : String{
+        return Uri.parse(BuildConfig.BASE_URL).buildUpon()
+                .appendPath("api")
+                .appendPath("v1")
+                .appendPath("json")
+                .appendPath(BuildConfig.TSDB_API_KEY)
+                .appendPath("searchevents.php")
+                .appendQueryParameter("e", matchs)
+                .build()
+                .toString()
+    }
 }

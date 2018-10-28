@@ -1,8 +1,9 @@
 package net.iqbalfauzan.mykotlinapp.submission_akhir.Adapter
 
 import android.content.Context
+import android.content.Intent
+import android.provider.CalendarContract
 import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.ScrollingTabContainerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,6 @@ import kotlinx.android.synthetic.main.item_prev_match.view.*
 import net.iqbalfauzan.mykotlinapp.R
 import net.iqbalfauzan.mykotlinapp.submission_akhir.GMT
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
-import net.iqbalfauzan.mykotlinapp.submission_dua.next.NextMatchAdapter
-import org.jetbrains.anko.sdk15.coroutines.onClick
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AdapterNextMatch(private val context: Context,
                        private val model:List<ModelMatch>,
@@ -27,12 +24,11 @@ class AdapterNextMatch(private val context: Context,
             itemView.textAway.text = items.namaAway
             var jam = items.jam?.split("+")
             var gmt = GMT().toGMTFormat(items.strDate,jam?.get(0))
-            itemView.textJam.text = gmt.toString()
+            val jam1 = gmt.toString().split(" ")
+            val jam2 = jam1?.get(3)
+            itemView.textJam.text = jam2
 
             itemView.textScore.text = " VS "
-            itemView.imageNotif.onClick {
-
-            }
             containerView.setOnClickListener { listener(items) }
         }
     }
@@ -43,6 +39,14 @@ class AdapterNextMatch(private val context: Context,
 
     override fun onBindViewHolder(holder: AdapterNextMatch.Holder, position: Int) {
         holder.bindItem(model[position], listener)
+        holder.itemView.imageNotif.setOnClickListener{
+            val intent = Intent(Intent.ACTION_EDIT)
+            intent.type = "vnd.android.cursor.item/event"
+            intent.putExtra(CalendarContract.Events.TITLE, model[position].namaHome+" VS "+model[position].namaAway)
+            intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, "12:00")
+            intent.putExtra(CalendarContract.CalendarAlerts.ALARM_TIME, "11:00")
+            context.startActivity(intent)
+        }
     }
 
 

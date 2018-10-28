@@ -9,9 +9,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.view.ViewPager
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.support.v7.widget.SearchView
+import android.view.*
 import net.iqbalfauzan.mykotlinapp.R
 import org.jetbrains.anko.AnkoComponent
 import org.jetbrains.anko.AnkoContext
@@ -91,4 +90,8 @@ class Fragment_Matches: Fragment(), AnkoComponent<Context> {
             return fragmentTitle[position]
         }
     }
+
+
+
+
 }

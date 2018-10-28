@@ -6,9 +6,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import android.widget.*
 import com.google.gson.Gson
 import net.iqbalfauzan.mykotlinapp.ApiRepository
@@ -16,7 +15,9 @@ import net.iqbalfauzan.mykotlinapp.R
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Adapter.AdapterNextMatch
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Model.ModelMatch
 import net.iqbalfauzan.mykotlinapp.submission_akhir.Presenter.NextMatchPresenter
+import net.iqbalfauzan.mykotlinapp.submission_akhir.Presenter.SearchMatchPresenter
 import net.iqbalfauzan.mykotlinapp.submission_akhir.View.NextMatchView
+import net.iqbalfauzan.mykotlinapp.submission_akhir.View.SearchMatchView
 import net.iqbalfauzan.mykotlinapp.submission_dua.details.DetailActivity
 import net.iqbalfauzan.mykotlinapp.submission_dua.next.NextMatchAdapter
 import net.iqbalfauzan.mykotlinapp.utils.invisible
@@ -24,9 +25,17 @@ import net.iqbalfauzan.mykotlinapp.utils.visible
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
-class Fragment_Next:Fragment(), AnkoComponent<Context>, AnkoLogger, NextMatchView{
+class Fragment_Next:Fragment(), AnkoComponent<Context>, AnkoLogger, NextMatchView, SearchMatchView{
+    override fun showSearchlist(data: List<ModelMatch>) {
+        swipeRefresh.isRefreshing = false
+        nextMatch.clear()
+        nextMatch.addAll(data)
+        adapter.notifyDataSetChanged()
+    }
+
     override fun showLoading() {
         progressBar.visible()
     }
@@ -50,6 +59,7 @@ class Fragment_Next:Fragment(), AnkoComponent<Context>, AnkoLogger, NextMatchVie
     private lateinit var leagueID: String
     private var nextMatch : MutableList<ModelMatch> = mutableListOf()
     private lateinit var presenter: NextMatchPresenter
+    private lateinit var presenterSearch: SearchMatchPresenter
     private lateinit var adapter: AdapterNextMatch
     override fun createView(ui: AnkoContext<Context>): View = with(ui) {
         linearLayout {
@@ -79,6 +89,7 @@ class Fragment_Next:Fragment(), AnkoComponent<Context>, AnkoLogger, NextMatchVie
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(true)
         val spinnerItems = resources.getStringArray(R.array.league)
         val spinnerAdapter = ArrayAdapter(ctx, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
         spinner.adapter = spinnerAdapter
@@ -122,9 +133,41 @@ class Fragment_Next:Fragment(), AnkoComponent<Context>, AnkoLogger, NextMatchVie
         val request = ApiRepository()
         val gson = Gson()
         presenter = NextMatchPresenter(this, request, gson)
+        presenterSearch = SearchMatchPresenter(this, request, gson);
+        swipeRefresh.onRefresh {
+            presenter.getMatchList(leagueID)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return createView(AnkoContext.create(ctx))
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.menu_search, menu)
+        return super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        val menuItem = menu?.findItem(R.id.action_search)
+        val search = menuItem?.actionView as android.widget.SearchView
+        searching(search)
+        super.onPrepareOptionsMenu(menu)
+    }
+    fun searching(search: SearchView) {
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Log.i("TAG","Llego al querysubmit")
+                listNext.adapter = adapter
+                presenterSearch.getMatchList(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                Log.i("TAG","Llego al querytextchange")
+                listNext.adapter = adapter
+                presenterSearch.getMatchList(newText)
+                return true
+            }
+        })
     }
 }

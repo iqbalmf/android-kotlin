@@ -15,7 +15,7 @@ class FavoriteAdapter(private val context: Context, private val prevMatch: List<
         RecyclerView.Adapter<FavoriteAdapter.FavHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-            FavHolder(LayoutInflater.from(context).inflate(R.layout.item_prev_match, parent, false))
+            FavHolder(LayoutInflater.from(context).inflate(R.layout.layout_prevmatch, parent, false))
 
     override fun getItemCount(): Int = prevMatch.size
 

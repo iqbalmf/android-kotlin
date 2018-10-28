@@ -6,9 +6,8 @@ import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import android.widget.*
 import com.google.gson.Gson
 import net.iqbalfauzan.mykotlinapp.ApiRepository
@@ -24,6 +23,7 @@ import net.iqbalfauzan.mykotlinapp.utils.visible
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
 class Fragment_Teams:Fragment(), AnkoComponent<Context>, AnkoLogger, TeamView {
@@ -84,6 +84,7 @@ class Fragment_Teams:Fragment(), AnkoComponent<Context>, AnkoLogger, TeamView {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setHasOptionsMenu(true)
         val spinnerItems = resources.getStringArray(R.array.league)
         val spinnerAdapter = ArrayAdapter(ctx, android.R.layout.simple_spinner_dropdown_item, spinnerItems)
         spinner.adapter = spinnerAdapter
@@ -104,10 +105,46 @@ class Fragment_Teams:Fragment(), AnkoComponent<Context>, AnkoLogger, TeamView {
             override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         }
+        swipeRefresh.onRefresh {
+            presenter.getTeamList(leagueName)
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return createView(AnkoContext.create(ctx))
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater?) {
+        inflater?.inflate(R.menu.menu_search, menu)
+
+        return super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?) {
+        val menuItem = menu?.findItem(R.id.action_search)
+        val search = menuItem?.actionView as SearchView
+        searching(search)
+        super.onPrepareOptionsMenu(menu)
+    }
+    private fun searching(search: SearchView) {
+        search.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Log.i("TAG","Llego al querysubmit")
+                listTeam.adapter = adapter
+                val request = ApiRepository()
+                val gson = Gson()
+                presenter.getSearchTeam(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                Log.i("TAG","Llego al querytextchange")
+                listTeam.adapter = adapter
+                val request = ApiRepository()
+                val gson = Gson()
+                presenter.getSearchTeam(newText)
+                return true
+            }
+        })
     }
 
 }
